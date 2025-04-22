@@ -1,0 +1,17 @@
+/* styles/globals.css */
+
+/* 1) استيراد خط Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* 2) إعداد Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3) تطبيق الخط والخلفية والنصود الافتراضية */
+body {
+  @apply font-sans bg-background-light text-text-light;
+}
+.dark body {
+  @apply bg-background-dark text-text-dark;
+}
