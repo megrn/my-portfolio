@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next build && next export"
+    "start": "next start"
   },
   "dependencies": {
     "framer-motion": "^10.12.16",
