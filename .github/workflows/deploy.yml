@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+# Removed misplaced steps block. Steps are already defined under jobs: build and jobs: deploy.
 jobs:
   build:
     name: Build
