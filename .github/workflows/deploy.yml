@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup SSH agent
-        uses: webfactory/ssh-agent@v0.8.1
+        uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIClTvQ7w3a2Sp+JGodvlqS72v/usiPv4ObiC+0IDWF40 mr@DESKTOP-S2G4KUI' }}
 
