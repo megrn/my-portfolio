@@ -55,7 +55,7 @@ jobs:
 
       - name: Remote deploy & restart
         run: |
-          ssh -p ${{ '22' }} ${{ 'root }}@${{ '164.92.105.164' }} << 'EOF'
+          ssh -p ${{ '22' }} ${{ 'root' }}@${{ '164.92.105.164' }} << 'EOF'
             cd /home/${{ 'root' }}/my-portfolio
             npm install --production
             pm2 restart my-portfolio || pm2 start npm --name my-portfolio -- start
