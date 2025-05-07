@@ -1,70 +1,140 @@
 // pages/contact.js
-import Head from "next/head";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import SEO from "../components/SEO";
 
 export default function Contact() {
-  const { register, handleSubmit, formState: { errors, isSubmitSuccessful } } = useForm();
-  const onSubmit = async data => {
-    await fetch("https://formspree.io/f/your-form-id", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
+  const [status, setStatus] = useState("");
+
+  const onSubmit = async (data) => {
+    setStatus("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (res.ok) {
+        setStatus("success");
+        reset();
+      } else {
+        setStatus("error");
+        console.error("Submission error:", json.message);
+      }
+    } catch (err) {
+      setStatus("error");
+      console.error("Network error:", err);
+    }
   };
 
   return (
     <>
-      <Head>
-        <title>Contact – Megern Qaisse</title>
-        <meta name="description" content="Get in touch with Megern Qaisse." />
-        <meta property="og:title" content="Contact – Megern Qaisse" />
-        <meta property="og:description" content="Get in touch with Megern Qaisse." />
-        <meta property="og:image" content="/og-image-contact.png" />
-      </Head>
-      <div className="p-8 bg-white dark:bg-gray-800 rounded-lg shadow-card max-w-3xl mx-auto">
-        <h1 className="text-4xl font-heading font-extrabold text-primary mb-4 dark:text-secondary">
-          Contact
+      <SEO
+        title="Contact – Megern Qaisse"
+        description="Get in touch with me - DevOps & Cloud Engineer."
+        image="/og-image-contact.png"
+      />
+
+      <div className="max-w-2xl mx-auto py-16 px-6">
+        <h1 className="text-4xl font-heading font-bold text-primary mb-6 dark:text-secondary">
+          Contact Me
         </h1>
 
-        {isSubmitSuccessful && (
-          <p className="mb-4 text-green-600">Thank you! Your message was sent.</p>
-        )}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Name */}
+          <div>
+            <label htmlFor="name" className="block font-semibold mb-1">
+              Name
+            </label>
+            <input
+              id="name"
+              {...register("name", { required: "Name is required" })}
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${
+                errors.name ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.name && (
+              <p className="mt-1 text-red-500 text-sm">{errors.name.message}</p>
+            )}
+          </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
+          {/* Email */}
           <div>
+            <label htmlFor="email" className="block font-semibold mb-1">
+              Email
+            </label>
             <input
-              {...register("name", { required: true })}
-              placeholder="Your Name"
-              className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600"
-            />
-            {errors.name && <span className="text-red-500">Name is required</span>}
-          </div>
-          <div>
-            <input
+              id="email"
+              type="email"
               {...register("email", {
-                required: true,
-                pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+                required: "Email is required",
+                pattern: {
+                  value:
+                    /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "Invalid email address",
+                },
               })}
-              placeholder="Your Email"
-              className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              }`}
             />
-            {errors.email && <span className="text-red-500">Valid email is required</span>}
+            {errors.email && (
+              <p className="mt-1 text-red-500 text-sm">
+                {errors.email.message}
+              </p>
+            )}
           </div>
+
+          {/* Message */}
           <div>
+            <label htmlFor="message" className="block font-semibold mb-1">
+              Message
+            </label>
             <textarea
-              {...register("message", { required: true })}
-              placeholder="Your Message"
-              rows="4"
-              className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600"
+              id="message"
+              rows="5"
+              {...register("message", {
+                required: "Message is required",
+                minLength: { value: 10, message: "Minimum 10 characters" },
+              })}
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${
+                errors.message ? "border-red-500" : "border-gray-300"
+              }`}
             />
-            {errors.message && <span className="text-red-500">Message is required</span>}
+            {errors.message && (
+              <p className="mt-1 text-red-500 text-sm">
+                {errors.message.message}
+              </p>
+            )}
           </div>
+
+          {/* Submit */}
           <button
             type="submit"
-            className="bg-accent text-white py-3 rounded-lg hover:bg-accent/90 transition"
+            disabled={isSubmitting}
+            className="px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition disabled:opacity-50"
           >
-            Send Message
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
+
+          {/* Status */}
+          {status === "success" && (
+            <p className="mt-4 text-green-600">
+              Thank you! Your message has been sent.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="mt-4 text-red-600">
+              Oops! Something went wrong—please try again later.
+            </p>
+          )}
         </form>
       </div>
     </>

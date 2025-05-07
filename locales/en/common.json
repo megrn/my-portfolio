@@ -1,0 +1,18 @@
+{
+    "nav.Home": "Home",
+    "nav.About": "About",
+    "nav.Services": "Services",
+    "nav.Projects": "Projects",
+    "nav.Contact": "Contact",
+    "nav.Blog": "Blog",
+    "nav.DownloadCV": "Download CV",
+    "hero.title": "Megern Qaisse",
+    "hero.subtitle": "DevOps & SaaS Developer crafting scalable cloud platforms.",
+    "hero.button": "Learn More",
+    "services.title": "Services",
+    "blog.title": "From the Blog",
+    "blog.description": "Dive into deep dives on SaaS development, DevOps best practices, and cloud-native architecture.",
+    "blog.button": "Read the Blog",
+    "footer.copyright": "© {year} Megern Qaisse. All rights reserved."
+  }
+  

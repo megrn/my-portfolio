@@ -37,7 +37,7 @@ jobs:
       - name: Setup SSH agent
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ '-----BEGIN OPENSSH PRIVATE KEY-----b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACApU70O8N2tkqfiRqHb5aku9r/7rIj7+Dm4gvtCA1heNAAAAJiElyX3hJcl9wAAAAtzc2gtZWQyNTUxOQAAACApU70O8N2tkqfiRqHb5aku9r/7rIj7+Dm4gvtCA1heNAAAAECWBNnvmDsyn8SG3FKpIo33rQhq8XRttS/zVye6bp9JuSlTvQ7w3a2Sp+JGodvlqS72v/usiPv4ObiC+0IDWF40AAAAEm1yQERFU0tUT1AtUzJHNEtVSQECAw==-----END OPENSSH PRIVATE KEY-----' }}
+          ssh-private-key: ${{ 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIClTvQ7w3a2Sp+JGodvlqS72v/usiPv4ObiC+0IDWF40 mr@DESKTOP-S2G4KUI' }}
 
       - name: Disable strict host key checking
         run: |

@@ -8,4 +8,6 @@ const nextConfig = {
   };
   
   module.exports = nextConfig;
-  
+
+// i18n.json content moved to a separate file
+    

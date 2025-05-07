@@ -1,0 +1,18 @@
+{
+    "nav.Home": "الرئيسية",
+    "nav.About": "من أنا",
+    "nav.Services": "الخدمات",
+    "nav.Projects": "المشاريع",
+    "nav.Contact": "تواصل معي",
+    "nav.Blog": "المدونة",
+    "nav.DownloadCV": "تحميل السيرة",
+    "hero.title": "مقرن قيسي",
+    "hero.subtitle": "DevOps & SaaS Developer crafting scalable cloud platforms.",
+    "hero.button": "اعرف أكثر",
+    "services.title": "الخدمات",
+    "blog.title": "من المدونة",
+    "blog.description": "اطّلع على مقالات حول تطوير SaaS، أفضل ممارسات DevOps، والهندسة السحابية.",
+    "blog.button": "اقرأ المدونة",
+    "footer.copyright": "© {year} مقرن قيسي. جميع الحقوق محفوظة."
+  }
+  
