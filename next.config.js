@@ -1,13 +1,23 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,
-    // ⚠️ disable TS build-time errors
-    typescript: {
-      ignoreBuildErrors: true,
-    },
-  };
-  
-  module.exports = nextConfig;
+// next.config.js
+const nextTranslate = require("next-translate");
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
+const { withSentryConfig } = require("@sentry/nextjs");
 
-// i18n.json content moved to a separate file
-    
+/** @type {import('next').NextConfig} */
+const baseConfig = {
+  reactStrictMode: true,
+};
+
+const wrapped = withPWA(nextTranslate(baseConfig));
+
+// Sentry Webpack plugin options (adjust as needed)
+const sentryWebpackPluginOptions = {
+  silent: true, // Suppress all logs
+};
+
+module.exports = withSentryConfig(wrapped, sentryWebpackPluginOptions);
