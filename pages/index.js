@@ -1,10 +1,13 @@
 // pages/index.js
-import Head from "next/head";
+import SEO from "../components/SEO";
 import DynamicButton from "../components/DynamicButton";
 import Link from "next/link";
 
 export default function Home() {
+  // Updated services list
   const services = [
+    "Business Analysis",
+    "Business Development",
     "SaaS Development",
     "DevOps Automation",
     "Cloud Infrastructure",
@@ -13,19 +16,11 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Home – Megern Qaisse</title>
-        <meta
-          name="description"
-          content="DevOps & SaaS Developer crafting scalable cloud platforms."
-        />
-        <meta property="og:title" content="Home – Megern Qaisse" />
-        <meta
-          property="og:description"
-          content="DevOps & SaaS Developer crafting scalable cloud platforms."
-        />
-        <meta property="og:image" content="/og-image-home.png" />
-      </Head>
+      <SEO
+        title="Home – Megern Qaisse"
+        description="DevOps & SaaS Developer crafting scalable cloud platforms."
+        image="/og-image-home.png"
+      />
 
       {/* Hero Section */}
       <section className="relative text-center py-32 px-6 bg-gradient-to-r from-primary to-secondary overflow-hidden">
@@ -55,8 +50,12 @@ export default function Home() {
       <svg viewBox="0 0 1440 100" className="w-full -mt-1">
         <path
           fill="currentColor"
-          d="M0,64L60,74.7C120,85,240,107,360,117.3C480,128,600,128,720,112C840,96,960,64,1080,53.3C1200,43,1320,53,1380,58.7L1440,64L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-        ></path>
+          d="M0,64L60,74.7C120,85,240,107,360,117.3
+             C480,128,600,128,720,112C840,96,960,64,1080,53.3
+             C1200,43,1320,53,1380,58.7L1440,64L1440,0L1380,0
+             C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0
+             C480,0,360,0,240,0,120,0,60,0L0,0Z"
+        />
       </svg>
 
       {/* Services Section */}
@@ -64,7 +63,7 @@ export default function Home() {
         <h2 className="text-3xl font-heading font-bold text-center text-primary mb-8 dark:text-secondary">
           Services
         </h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
           {services.map((svc) => (
             <DynamicButton
               key={svc}
